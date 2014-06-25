@@ -9,4 +9,9 @@ module ApplicationHelper
 			"#{base_title} | #{@title}"
 		end
 	end
+
+	def logo
+		# we made this so that the _header.html.erb does not need it and we can just add the path
+		image_tag("logo.png", :alt => "Sample App", :class => "round")
+	end
 end

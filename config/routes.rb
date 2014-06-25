@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
   root 'pages#home'
-  get '/contact', :to => 'pages#contact'
-  get '/about',   :to => 'pages#about'
-  get '/help',    :to => 'pages#help'
+  get '/contact',   :to => 'pages#contact'
+  get '/about',     :to => 'pages#about'
+  get '/help',      :to => 'pages#help'
+  # for path use signup_path. pages/users is the controller and contact/help/new is the action. Always match controller#action
+  get '/signup',    :to => 'users#new'
   
 
 
