@@ -6,5 +6,6 @@ class UsersController < ApplicationController
   def show
     # this is how to find the user dynamically
     @user = User.find(params[:id])
+    @title = @user.name
   end
 end
