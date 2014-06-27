@@ -1,9 +1,24 @@
 class User < ActiveRecord::Base
+  attr_accessor :password
 
-  validates :name,  :presence   => true, # makes sure that user has entered name
-                    :length     => { :maximum => 50 } # users name cannot be longer than 50 chars
+  email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
-  validates :email, :presence   => true, # makes sure that user has entered email
-                    :format     => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }, # makes sure email are valid for web format
-                    :uniqueness => { :case_sensitive => false } # lets upcase and downcase email be the same
+  validates :name,      # makes sure that user has entered name
+                        :presence     => true, 
+                        # users name cannot be longer than 50 chars
+                        :length       => { :maximum => 50 } 
+
+  validates :email,     # makes sure that user has entered email
+                        :presence     => true, 
+                        # makes sure email are valid for web format
+                        :format       => { :with => email_regex }, 
+                        # lets upcase and downcase email be the same
+                        :uniqueness   => { :case_sensitive => false } 
+
+  validates :password,  # make sure user has entered password
+                        :presence     => true,
+                        # make sure passwords match
+                        :confirmation => true, 
+                        # min 6 chars and max 40 chars
+                        :length       => { :within => 6..40 } 
 end
